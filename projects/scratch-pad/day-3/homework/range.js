@@ -24,6 +24,23 @@
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
+    // Declares and initializes an empty array
+    var outputArray = [];
+
+    // Runs a for loop that collects into outputArray the numbers between start and end, inclusively,
+    // if start is less than end
+    if (start <= end) {
+        for (var i = start; i <= end; i++) {
+            outputArray.push(i);
+        }
+    } else if (start > end) { // Runs a for loop that collects into outputArray the numbers between start and end, inclusively,
+                              // if start is greater than end.
+        for (var i = start; i >= end; i--) {
+            outputArray.push(i);
+        }
+    }
+
+    return outputArray;
     
     
     

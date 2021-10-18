@@ -35,7 +35,15 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
+    
+    // Declares and initializes an object that contains the arguments as its values
+    var objectToReturn = {
+        id: id,
+        nameFirst: nameFirst,
+        nameLast: nameLast
+    };
 
+    return objectToReturn;
 } 
 
 
@@ -43,13 +51,67 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+        // Creates a function that adds contact to the array contacts
+        addContact: function(contact) {
+            contacts.push(contact);
+        },
+        findContact: function(fullName) {
+            // Declares and initializes an array that contains the names of fullName as its values
+            var arrayOfNames = fullName.split(" ");
+            
+            // Declares and initializes an object that will contain the contact whose name matches fullName
+            // if it exists in contacts
+            var contactToReturn = undefined;
+
+            // Declares and initializes a counter
+            var i = 0;
+
+            // A while loop that iterates through contacts to find whether fullName is in contacts
+            // and returns the corresponding contact
+            while (i < contacts.length) {
+                if (arrayOfNames[0] === contacts[i].nameFirst && arrayOfNames[1] === contacts[i].nameLast) {
+                    contactToReturn = contacts[i];
+                }
+                i++;
+            }
+
+            return contactToReturn;
+        },
+        removeContact: function(contact) {
+            
+            // A for loop that iterates through contacts to find and delete the inputted contact
+            for (var i = 0; i < contacts.length; i++) {
+                if (contacts[i].id === contact.id && contacts[i].nameFirst === contact.nameFirst && contacts[i].nameLast === contact.nameLast) {
+                    contacts.splice(i, 1);
+                }
+            }
+        },
+        printAllContactNames: function() {
+            
+            // Declares and initializes an empty string
+            var stringToReturn = "";
+
+            // A for loop that iterates through contacts and adds the full name of each contact
+            // with a line break to stringToReturn
+            // The last name will not contain a line break at its end
+            for (var i = 0; i < contacts.length; i++) {
+                if (i !== contacts.length - 1) {
+                    stringToReturn += contacts[i].nameFirst + " " + contacts[i].nameLast + "\n";
+                } else {
+                    stringToReturn += contacts[i].nameFirst + " " + contacts[i].nameLast;
+                }
+            }
+
+            return stringToReturn;
         }
+
     }
 }
 
