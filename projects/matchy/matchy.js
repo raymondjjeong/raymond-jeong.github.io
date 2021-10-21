@@ -1,7 +1,7 @@
 /* global $ */
 function addAnimals(ans, id){
     $("#"+id).html("");
-    for(var i =0, len = ans.length; i < len; i++){
+    for(var i = 0, len = ans.length; i < len; i++){
         var mu = '<div class=animal>' +
               '<h2 class="anName">' + ans[i].name + '</h2>' +
               '<h3><b>Species:</b><span class="anSpecies"> ' + ans[i].species + "</span></h3>" +
