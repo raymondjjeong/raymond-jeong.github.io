@@ -3,23 +3,54 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
+function triangles(maxNumberOfPoundSigns) {
+  var stringOfPoundSigns = "";
 
+  for (var i = 1; i <= maxNumberOfPoundSigns; i++) {
+    stringOfPoundSigns += "#";
+    console.log(stringOfPoundSigns);
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-  
+  for (var i = 1; i <= 15; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuzz");
+    } else if (i % 3 === 0) {
+      console.log("fizz");
+    } else if (i % 5 === 0) {
+      console.log("buzz");
+    } else {
+      console.log(i);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
+function drawChessboard(widthOrHeight) {
+  var chessboard = "";
+  
+  for (var i = 1; i <= widthOrHeight; i++) {
+    for (var j = 1; j <= widthOrHeight; j++) {
+      if ((i + j) % 2 === 0) {
+        chessboard += " ";
+      } else {
+        chessboard += "#";
+      }
 
+      if (j === widthOrHeight) {
+        chessboard += "\n";
+      }
+    }
+  }
+
+  return chessboard;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
