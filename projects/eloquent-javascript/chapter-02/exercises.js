@@ -44,7 +44,7 @@ function drawChessboard(widthOrHeight) {
         chessboard += "#";
       }
 
-      if (j === widthOrHeight) {
+      if (i !== widthOrHeight && j === widthOrHeight) {
         chessboard += "\n";
       }
     }
