@@ -22,22 +22,110 @@ var _ = require("underbar");
  */
 
 var maleCount = function(array) {
-    
+    var males = _.filter(array, function (customer, index, arr) { 
+        return customer.gender === "male";
+    });
+
+    return males.length;
 };
 
-var femaleCount;
+var femaleCount = function (array) {
+    var numOfFemales = _.reduce(array, function(prevValue, currentCustomer, index) {
+        if (currentCustomer.gender === "female") {
+            prevValue += 1;
 
-var oldestCustomer;
+            return prevValue;
+        }
+    }, 0);
 
-var youngestCustomer;
+    return numOfFemales;
+};
 
-var averageBalance;
+var oldestCustomer = function (customers) {
+    var oldestPerson = customers[0];
+    
+    for (var i = 0; i < customers.length; i++) {
+        if (customers[i].age > oldestPerson.age) {
+            oldestPerson = customers[i];
+        }
+    }
 
-var firstLetterCount;
+    return oldestPerson.name;
+};
 
-var friendFirstLetterCount;
+var youngestCustomer = function (customers) {
+    var youngestPerson = customers[0];
+    
+    for (var i = 0; i < customers.length; i++) {
+        if (customers[i].age < youngestPerson.age) {
+            youngestPerson = customers[i];
+        }
+    }
 
-var friendsCount;
+    return youngestPerson.name;
+};;
+
+var averageBalance = function (customers) {
+    var totalBalance = 0;
+    var averageBalance;
+
+    for (var i = 0; i < customers.length; i++) {
+        totalBalance += customers[i].balance;
+    }
+
+    averageBalance = totalBalance / customers.length;
+
+    return averageBalance;
+};
+
+var firstLetterCount = function (customers, letter) {
+    var numOfNames = 0;
+
+    for (var i = 0; i < customers.length; i++) {
+        if (customers[i].name[0].toLowerCase() === letter.toLowerCase()) {
+            numOfNames += 1;
+        }
+    }
+
+    return numOfNames;
+};
+
+var friendFirstLetterCount = function (customers, customer, letter) {
+    var customerExists = false;
+    var numOfFriends = 0;
+    
+    for (var i = 0; i < customers.length; i++) {
+        if (customers[i].name.toLowerCase() === customer.name.toLowerCase()) {
+            customerExists = true;
+        }
+    }
+
+    if (customerExists) {
+        for (var i = 0; i < customer.friends.length; i++) {
+            if (customer.friends[i].name[0].toLowerCase() === letter.toLowerCase()) {
+                numOfFriends++;
+            }
+        }
+    }
+
+    return numOfFriends;
+};
+
+var friendsCount = function (customers, name) {
+    var customersWithFriend = [];
+    
+    for (var i = 0; i < customers.length; i++) {
+        for (var j = 0; j < customers[i].friends.length; j++) {
+            if (customers[i].friends[j].name.toLowerCase() === name.toLowerCase()) {
+                customersWithFriend.push(customers[i].friends[j]);
+            }
+        }
+    }
+
+    return customersWithFriend;
+};
+
+
 
 var topThreeTags;
 

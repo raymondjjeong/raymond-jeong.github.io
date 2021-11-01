@@ -379,9 +379,9 @@ _.map = function (collection, func) {
 _.pluck = function (arrayOfObjects, property) {
     var outputArray = [];
 
-    for (var i = 0; i < arrayOfObjects.length; i++) {
-        outputArray.push(arrayOfObjects[i][property]);
-    }
+    outputArray = _.map(arrayOfObjects, function (element, index, collection) {
+        return element["name"];
+    });
 
     return outputArray;
 }
