@@ -556,22 +556,14 @@ _.some = function (collection, func) {
 _.reduce = function (array, func, seed) {
     var previousResult;
     
-    if (seed !== undefined) {
-        for (var i = 0; i < array.length; i++) {
-            if (i === 0) {
-                previousResult = func(seed, array[i], i);
-            } else {
-                previousResult = func(previousResult, array[i], i);
-            }
-        }
+    if (seed === undefined) {
+        previousResult = array[0];
     } else {
-        for (var i = 0; i < array.length; i++) {
-            if (i === 0) {
-                previousResult = array[0];
-            } else {
-                previousResult = func(previousResult, array[i], i);
-            }
-        }
+        previousResult = func(seed, array[0], 0);
+    }
+
+    for (var i = 1; i < array.length; i++) {
+        previousResult = func(previousResult, array[i], i);
     }
 
     return previousResult;
