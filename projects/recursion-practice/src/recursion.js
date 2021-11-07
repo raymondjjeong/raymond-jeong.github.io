@@ -167,13 +167,15 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
-  if (y === 0) {
+  if (x === 0 || y === 0) {
     return 0;
   }
   if (x < 0 && y < 0) {
     return -x + multiply(x, y + 1);
+  } else if (x < 0) {
+    return x + multiply(x, y - 1);
   } else if (y < 0) {
-    return x + multiply(x, y + 1);
+    return -x + multiply(x, y + 1);
   } else if (y > 0) {
     return x + multiply(x, y - 1);
   }
@@ -182,8 +184,27 @@ var multiply = function(x, y) {
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
+
 var divide = function(x, y) {
+  if (x === 0 && y !== 0) {
+    return 0;
+  } 
+  
+  if (y === 0) {
+    return undefined;
+  }
+
+  if (x < 0 && y < 0) {
+    return 1 + divide((-x) - (-y), -y);
+  } else if (x < 0) {
+    return -1 + divide((x + y), y);
+  } else if (y < 0) {
+    return -1 + divide((x + y), y);
+  } else if (x > 0 && y > 0) {
+    return 1 + divide((x - y), y);
+  }
 };
+
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
@@ -191,6 +212,7 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+  
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
