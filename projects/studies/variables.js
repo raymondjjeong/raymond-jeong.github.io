@@ -1,4 +1,6 @@
 /**
+ * VARIABLES
+ * 
  * Variables are containers that points to values of any data type. The program in which the variables are located then use the values according to its purpose.
  * 
  * Variables are created in two steps: declaration and initialization. To declare a variable, one must use the keyword var and then give the variable a name. To initialize the variable, one must assign a value to the variable with an equals sign. If a variable is declared without an assignment, it is undefined.

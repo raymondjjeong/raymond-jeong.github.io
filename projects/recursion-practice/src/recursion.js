@@ -237,8 +237,6 @@ var gcd = function(x, y) {
 var compareStr = function(str1, str2) {
   if (str1 === "" && str2 === "") {
     return true;
-  } else if (str1.length !== str2.length) {
-    return false;
   }
 
   if (str1[0] === str2[0]) {
@@ -527,6 +525,24 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+  var outputArray = [];
+  
+  if (array.length === 0) {
+    return [];
+  }
+
+  if (array[0] === 0) {
+    if (array[0] === array[1]) {
+      return outputArray.concat(minimizeZeroes(array.slice(1)));
+    } else {
+      outputArray.push(array[0]);
+      return outputArray.concat(minimizeZeroes(array.slice(1)));
+    }
+  } else {
+    outputArray.push(array[0]);
+    return outputArray.concat(minimizeZeroes(array.slice(1)));
+  }
+
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
@@ -534,12 +550,75 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  if (array.length === 0) {
+    return array;
+  }
+
+  if (array[0] < 0) {
+    array[0] = -array[0];
+  }
+  if (array[1] > 0) {
+    array[1] = -array[1];
+  }
+
+  return [array[0], array[1]].concat(alternateSign(array.slice(2)));
+
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, firstWordPassed) {
+  var capitalizedNums = {
+    0: "Zero",
+    1: "One",
+    2: "Two",
+    3: "Three",
+    4: "Four",
+    5: "Five",
+    6: "Six",
+    7: "Seven",
+    8: "Eight",
+    9: "Nine"
+  };
+
+  var lowerCaseNums = {
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine"
+  };
+
+  var arrayOfWords = str.split(" ");
+  var firstWord = arrayOfWords.shift();
+
+  if (arrayOfWords.length === 0) {
+    return firstWord;
+  }
+
+  if (firstWordPassed === undefined) {
+    if (isNaN(firstWord)) {
+      firstWordPassed = true;
+      return firstWord + " " + numToText(arrayOfWords.join(" "), firstWordPassed);
+    } else {
+      firstWordPassed = true;
+      return capitalizedNums[firstWord] + " " + numToText(arrayOfWords.join(" "), firstWordPassed);
+    }
+  } else if (firstWordPassed === true) {
+    if (isNaN(firstWord)) {
+      firstWordPassed = true;
+      return firstWord + " " + numToText(arrayOfWords.join(" "), firstWordPassed);
+    } else {
+      firstWordPassed = true;
+      return lowerCaseNums[firstWord] + " " + numToText(arrayOfWords.join(" "), firstWordPassed);
+    }
+  }
 };
 
 // *** EXTRA CREDIT ***
