@@ -380,7 +380,7 @@ _.pluck = function (arrayOfObjects, property) {
     var outputArray = [];
 
     outputArray = _.map(arrayOfObjects, function (element, index, collection) {
-        return element["name"];
+        return element[property];
     });
 
     return outputArray;
@@ -531,6 +531,9 @@ _.some = function (collection, func) {
     }
 
     return false;
+}
+}
+}
 }
 
 
