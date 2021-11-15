@@ -70,16 +70,48 @@ var youngestCustomer = function (customers) {
 var averageBalance = function (customers) {
     var totalOfBalances = 0;
     
-    _.each(customers, function (customer, index, customers) {
-        totalOfBalances += customer.balance;
-    });
+    totalOfBalances = _.reduce(customers, function(prevValue, currentObject, i) {
+        prevValue += currentObject.balance;
 
-    return totalOfBalances / customers.length;
+        return prevValue;
+    }, 0);
+
+    return (totalOfBalances / customers.length);
 };
 
-var firstLetterCount;
+var firstLetterCount = function (array, letter) {
+    var customersWithLetter = _.filter(array, function(currentCustomer, index, array) {
+        if (currentCustomer.name[0].toLowerCase() === letter.toLowerCase()) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 
-var friendFirstLetterCount;
+    return customersWithLetter.length;
+}
+
+var friendFirstLetterCount = function (customers, customer, letter) {
+    var friendsWithLetter = [];
+    var indexOfCustomer;
+
+    for (var i = 0; i < customers.length; i++) {
+        if (customers[i].name.toLowerCase() === customer.toLowerCase()) {
+            indexOfCustomer = i;
+        }
+    }
+
+    friendsWithLetter = _.filter(customers[indexOfCustomer].friends, 
+        function(friend, index, customers[indexOfCustomer].friends) {
+            if (friend.name[0].toLowerCase() ==== letter.toLowerCase()) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+    return friendsWithLetter.length;
+};
 
 var friendsCount;
 
