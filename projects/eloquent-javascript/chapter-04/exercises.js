@@ -2,8 +2,24 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
+function range(a, b, step) {
+  var outputArray = [];
+  
+  if (step !== undefined) {
+    if (a < b) {
+      for (var i = a; i <= b; i += step) {
+        outputArray.push(i);
+      }
+    } else if (a > b) {
+      for (var i = a; i >= b; i -= step) {
+        outputArray.push(i);
+      }
+    } else if (a === b) {
+      return [];
+    }
+  }
 
+  return outputArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

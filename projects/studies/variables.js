@@ -9,8 +9,13 @@
  */
 
 
- // 1. Declaration and Assignment
- var myName = "Raymond Jeong" // The string "Raymond Jeong" is assigned to the variable myName.
+ /**
+  * 1. Declaration and Assignment 
+  * A variable can be declared without being assigned. In other words, the variable is created but does not point to a value unless a value is assigned to the variable.
+  */
+ var myName; // The variable myName is declared without being assigned to a value.
+ console.log(myName); // This statement prints, to the console, "undefined."
+ myName = "Raymond Jeong" // The string "Raymond Jeong" is assigned to the variable myName.
 console.log(myName); // This statement prints to the console, "Raymond Jeong."
 
  /** 2. var, let, const

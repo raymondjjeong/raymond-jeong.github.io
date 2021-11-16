@@ -102,8 +102,8 @@ var friendFirstLetterCount = function (customers, customer, letter) {
     }
 
     friendsWithLetter = _.filter(customers[indexOfCustomer].friends, 
-        function(friend, index, customers[indexOfCustomer].friends) {
-            if (friend.name[0].toLowerCase() ==== letter.toLowerCase()) {
+        function(friend, index, customers) {
+            if (friend.name[0].toLowerCase() === letter.toLowerCase()) {
                 return true;
             } else {
                 return false;
@@ -113,9 +113,32 @@ var friendFirstLetterCount = function (customers, customer, letter) {
     return friendsWithLetter.length;
 };
 
-var friendsCount;
+var friendsCount = function (customers, nameToSearch) {
+    var arrayOfCustomers = [];
+    
+    var arrayOfObjects = _.filter(customers, function(customer, index, customers) {
+        for (var i = 0; i < customer.friends.length; i++) {
+            if (customer.friends[i].name === nameToSearch) {
+                return true;
+            }
+        }
 
-var topThreeTags;
+        return false;
+    });
+
+    arrayOfCustomers = _.map(arrayOfObjects, function(customer, index, customers) {
+        return customer.name;
+    });
+
+    return arrayOfCustomers;
+}
+
+var topThreeTags = function(customers) {
+    var arrayToCheck = [];
+    var collectionOfTags = {};
+};
+
+
 
 var genderCount;
 

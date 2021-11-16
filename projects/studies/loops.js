@@ -3,6 +3,7 @@
  * 
  * A loop runs a block of code for a certain number of times or until a condition is broken.
  * In a for loop, a block of code is run a certain number of times. It begins with a variable equaling a starting number, which accumulates by a certain amount after each iteration until it equals the ending number.
+ * The for loop has the following format: for (start; stop; update) {}. The start of a for loop is the initial value of the variable that counts according to the update, until the stop condition is reached.
  */
  for (var i = 0; i < 5; i++) {
     console.log("This code is printed.");
